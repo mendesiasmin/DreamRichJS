@@ -52,8 +52,6 @@ class ClientRegister extends Component {
   submitForms = () => {
 
     function submitForm(data){
-      if(data.birthday)
-        data.birthday = data['birthday'].toISOString().slice(0, 10);
 
       fetch(routeMap[this.name], {
         method: 'post',
@@ -75,9 +73,6 @@ class ClientRegister extends Component {
     var that = this;
 
     function submitBaseForm(data){
-
-      if(data.birthday)
-        data.birthday = data['birthday'].toISOString().slice(0, 10);
 
       fetch(routeMap[this.name], {
         method: 'post',
@@ -431,7 +426,7 @@ class ClientRegister extends Component {
           />
         </Paper>
       </div>
-    ); 
+    );
   }
 }
 
