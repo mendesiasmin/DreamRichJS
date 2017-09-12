@@ -24,7 +24,7 @@ export default class LoginForm extends Component{
     console.log(data);
     // console.log(event.target.username.value);
     // console.log(event.target.password.value);
-    fetch('/api/client/auth/',{
+    fetch('/api/auth/',{
       method: 'POST',
       headers:{
         'Content-Type': 'application/json',
@@ -33,39 +33,39 @@ export default class LoginForm extends Component{
       body: JSON.stringify(data)
     })
     .then((response) => {
-      if(response.ok){ 
-        return response.json(); 
+      if(response.ok){
+        return response.json();
       }else {
-        console.log('Requisition error');
-        this.setState({userExist: false});
-        this.form.validateForm();
-        return {};
-      } 
+        throw new Error(`Requisition error ${response.status}`);
+      }
     })
     .then(Auth.authenticate)
-    .catch((error) => {console.log(error);});
+    .catch((error) => {
+      this.setState({userExist: false});
+      this.form.validateForm();
+      console.log('asdf', error);
+    });
   }
 
   render(){
     return (
-      <Formsy.Form ref={ (form) => {this.form = form;} }
+      <Formsy.Form ref={ (form) => {this.form = form;}}
+        onInvalid={() => {this.setState({userExist: true});} }
         onValidSubmit={this.handleSubmit}>
-        <FormsyText type="text" 
-          name="username" 
-          required 
-          hintText="E-mail ou nome de usuário" 
+        <FormsyText type="text"
+          name="username"
+          required
+          hintText="E-mail ou nome de usuário"
           floatingLabelText="Usuário"
-          onInvalid={() => {this.setState({userExist: true});}}
           validations = "userExist"
           validationError={' '}
         />
         <br/>
-        <FormsyText type="password" 
-          name="password" 
-          required 
-          hintText="Senha" 
-          floatingLabelText="Senha"  
-          onInvalid={() => {this.setState({userExist: true});} }
+        <FormsyText type="password"
+          name="password"
+          required
+          hintText="Senha"
+          floatingLabelText="Senha"
           validations = "userExist"
           validationError={this.invalidMessage} />
         <br/><br/>
