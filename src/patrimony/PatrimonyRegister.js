@@ -5,7 +5,7 @@ import {Auth} from '../auth/Auth';
 import patrimonyRoutes from '../routes/PatrimonyRoutes.js';
 import Paper from 'material-ui/Paper';
 
-export default class Employeer extends Component {
+export default class PatrimonyRegister extends Component {
 
   submit(data){
 
