@@ -75,7 +75,7 @@
   },
   "proxy": {
     "/api": {
-      "target": "http://0.0.0.0:8000"
+      "target": "http://api:8000"
     }
   },
   "jest": {
