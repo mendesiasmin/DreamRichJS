@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  front:
+    build: .
+    entrypoint: /entrypoint.sh
+    container_name: dreamrich_front
+    command: npm start
+    volumes:
+      - .:/front
+    ports:
+      - "8001:3000"
+    networks:
+      - dreamrich_default
+
+networks:
+  dreamrich_default:
+    external: true
