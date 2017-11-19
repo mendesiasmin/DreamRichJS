@@ -4,7 +4,6 @@ services:
 
   front:
     build: .
-    entrypoint: /entrypoint.sh
     container_name: dreamrich_front
     command: npm start
     volumes:
