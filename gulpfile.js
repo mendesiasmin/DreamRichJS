@@ -14,7 +14,7 @@ var del          = require('del');
 
 var sass_files = ['src/stylesheet/**/*.sass'];
 var html_files = ['src/*.html'];
-var js_files = ['src/**/*.js'];
+var js_files   = ['src/**/*.js'];
 
 
 // Cleaning build/ folder
@@ -71,7 +71,7 @@ gulp.task('sass:min', function() {
     }))
 });
 
-gulp.task('build', function() {
+gulp.task('build', ['concat_js'], function() {
  return browserify('./build/index.js')
  .transform(babel)
  .bundle()
@@ -88,7 +88,6 @@ gulp.task('concat_js', function() {
 
 gulp.task('development', ['clean:build',
                           'sass',
-                          'concat_js',
                           'build',
                           'server'
                          ], function() {
@@ -97,7 +96,6 @@ gulp.task('development', ['clean:build',
 
 gulp.task('production', ['clean:build',
                          'sass:min',
-                         'concat_js',
                          'build',
                          'server'
                         ], function() {
