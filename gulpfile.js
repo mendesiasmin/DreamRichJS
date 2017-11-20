@@ -6,7 +6,6 @@ var babel        = require('babelify');
 var concat       = require('gulp-concat');
 var reload       = browserSync.reload;
 var sass         = require('gulp-sass');
-var uglify       = require('gulp-uglify');
 var useref       = require('gulp-useref');
 var gulpIf       = require('gulp-if');
 var cssnano      = require('gulp-cssnano');
